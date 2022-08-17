@@ -6,6 +6,20 @@ import org.junit.jupiter.api.Test;
 public class RadioTest {
 
     @Test
+    public void newNumberOfStations() {
+        Radio rad = new Radio(11);
+
+        Assertions.assertEquals(10, rad.getMaxStation());
+    }
+
+    @Test
+    public void newNumberOfStationsIfZero() {
+        Radio rad = new Radio(0);
+
+        Assertions.assertEquals(0, rad.getMaxStation());
+    }
+
+    @Test
     public void shouldSetStation() {
         Radio rad = new Radio();
 
@@ -13,6 +27,26 @@ public class RadioTest {
 
         int expected = 8;
         int actual = rad.getCurrentStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetMaxStation() {
+        Radio rad = new Radio();
+
+        int expected = 9;
+        int actual = rad.getMaxStation();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetMinStation() {
+        Radio rad = new Radio();
+
+        int expected = 0;
+        int actual = rad.getMinStation();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -107,12 +141,32 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldSetVolumeIf11() {
+    public void shouldSetMaxVolume() {
         Radio rad = new Radio();
 
-        rad.setCurrentVolume(11);
+        int expected = 100;
+        int actual = rad.getMaxVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetMinVolume() {
+        Radio rad = new Radio();
 
         int expected = 0;
+        int actual = rad.getMinVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetVolumeIf101() {
+        Radio rad = new Radio();
+
+        rad.setCurrentVolume(101);
+
+        int expected = 100;
         int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
@@ -144,13 +198,13 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldIncreaseTheVolumeIf10() {
+    public void shouldIncreaseTheVolumeIf100() {
         Radio rad = new Radio();
-        rad.setCurrentVolume(10);
+        rad.setCurrentVolume(100);
 
         rad.increaseTheVolume();
 
-        int expected = 10;
+        int expected = 100;
         int actual = rad.getCurrentVolume();
 
         Assertions.assertEquals(expected, actual);
